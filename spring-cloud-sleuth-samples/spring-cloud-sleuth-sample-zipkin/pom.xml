@@ -95,8 +95,9 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-sleuth-sample-test-core</artifactId>
-			<scope>test</scope>
-		</dependency>
+			<scope>system</scope>
+			<systemPath>C:\Users\shariq\.m2\repository\shariqSystemJars\spring-cloud-sleuth-sample-test-core-1.2.2.BUILD.jar</systemPath>
+			</dependency>
 		<dependency>
 			<groupId>io.zipkin.java</groupId>
 			<artifactId>zipkin-server</artifactId>
