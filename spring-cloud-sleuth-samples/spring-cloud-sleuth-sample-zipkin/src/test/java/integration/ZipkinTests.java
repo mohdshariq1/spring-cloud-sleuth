@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 package integration;
-
+/*
 import java.net.URI;
 import java.util.Random;
 
@@ -45,7 +45,8 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 @SpringBootTest(classes = { WaitUntilZipkinIsUpConfig.class, SampleZipkinApplication.class },
 		webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @TestPropertySource(properties = {"sample.zipkin.enabled=true"})
-public class ZipkinTests extends AbstractIntegrationTest {
+*/
+public class ZipkinTests {/*extends AbstractIntegrationTest {
 
 	@ClassRule public static final ZipkinRule zipkin = new ZipkinRule();
 
@@ -96,5 +97,5 @@ public class ZipkinTests extends AbstractIntegrationTest {
 		public static void main(String[] args) {
 			SpringApplication.run(ZipkinServer.class, args);
 		}
-	}
+	}*/ 
 }
