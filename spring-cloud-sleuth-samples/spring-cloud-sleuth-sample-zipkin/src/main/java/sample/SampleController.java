@@ -71,7 +71,11 @@ ApplicationListener<EmbeddedServletContainerInitializedEvent> {
 				Thread.sleep(millis);
 				SampleController.this.tracer.addTag("callable-sleep-millis", String.valueOf(millis));
 				Span currentSpan = SampleController.this.accessor.getCurrentSpan();
-				return "async hi: " + currentSpan;
+				
+				String s = restTemplate.getForObject("http://localhost:" + port
+						+ "/hi2", String.class);
+				
+				return "async hi: " + currentSpan + s;
 			}
 		};
 	}
@@ -97,7 +101,7 @@ ApplicationListener<EmbeddedServletContainerInitializedEvent> {
 		Span span = this.tracer.createSpan("http:customTraceEndpoint",
 				new AlwaysSampler());
 		int millis = this.random.nextInt(1000);
-		log.info(String.format("Sleeping for [%d] millis", millis));
+		log.info(String.format("Sleeping    for [%d] millis", millis));
 		Thread.sleep(millis);
 		this.tracer.addTag("random-sleep-millis", String.valueOf(millis));
 
@@ -105,6 +109,21 @@ ApplicationListener<EmbeddedServletContainerInitializedEvent> {
 				+ "/call", String.class);
 		this.tracer.close(span);
 		return "traced/" + s;
+	}
+	
+	@RequestMapping("/traced2")
+	public String traced2() throws InterruptedException {
+	/*	Span span = this.tracer.createSpan("http:customTraceEndpoint",
+				new AlwaysSampler());
+	*/	int millis = this.random.nextInt(1000);
+		log.info(String.format("Sleeping for [%d] millis", millis));
+		Thread.sleep(millis);
+		this.tracer.addTag("random-sleep-millis", String.valueOf(millis));
+
+		String s = this.restTemplate.getForObject("http://localhost:" + this.port
+				+ "/call", String.class);
+	//	this.tracer.close(span);
+		return "traced2/" + s;
 	}
 
 	@RequestMapping("/start")
